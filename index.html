@@ -394,12 +394,12 @@ const COUPLE = [
     ]
   },
   {
-    role:"Chú rể", initial:"S", name:"Trần Tấn Sang", job:"Kỹ sư phần mềm",
+    role:"Chú rể", initial:"S", name:"Trần Tấn Sang", job:"Kỹ thuật viên hỗ trợ phần mềm",
     facts:[
       ["Năm sinh","1998 (Mậu Dần) · mệnh Thổ"],
       ["Quê quán","Sài Gòn"],
       ["Du học","7 năm học tập và làm việc tại Canada"],
-      ["Công việc","Kỹ sư hỗ trợ phần mềm tại một công ty phần mềm ở Sài Gòn"]
+      ["Công việc","Kỹ thuật viên hỗ trợ phần mềm tại một công ty phần mềm ở Sài Gòn"]
     ]
   }
 ];
@@ -407,7 +407,7 @@ const COUPLE = [
 // 4) LỊCH TRÌNH (giờ Việt Nam +07:00)
 const DAYS = [
   {
-    id:"d3", num:"03", dow:"Thứ Tư", label:"12", title:"Bay ra Hà Nội",
+    id:"d3", date:"2026-12-03", num:"03", label:"12", title:"Bay ra Hà Nội",
     events:[
       { at:"2026-12-03T08:10:00+07:00", time:"8:10", title:"Ra Hà Nội",
         desc:"Gia đình hạ cánh tại sân bay Nội Bài lúc 8:10.",
@@ -415,7 +415,7 @@ const DAYS = [
     ]
   },
   {
-    id:"d4", num:"04", dow:"Thứ Năm", label:"12", title:"Lễ dạm ngõ",
+    id:"d4", date:"2026-12-04", num:"04", label:"12", title:"Lễ dạm ngõ",
     events:[
       { at:"2026-12-04T09:00:00+07:00", approx:"Trong ngày", title:"Lễ Dạm Ngõ · Lễ Xin Cưới",
         desc:"Chú rể cùng mẹ và đại diện gia đình mang tráp sang nhà gái để thưa chuyện và chính thức đặt vấn đề xin cưới. Hai gia đình gặp mặt, chào hỏi và bàn bạc về hôn lễ.",
@@ -423,7 +423,7 @@ const DAYS = [
     ]
   },
   {
-    id:"d5", num:"05", dow:"Thứ Sáu", label:"12", title:"Đón khách & chuẩn bị",
+    id:"d5", date:"2026-12-05", num:"05", label:"12", title:"Đón khách & chuẩn bị",
     events:[
       { at:"2026-12-05T10:00:00+07:00", approx:"Trong ngày", title:"Gia đình và bạn bè nhà trai ra Hà Nội",
         desc:"7 thành viên gia đình cùng 4 người bạn có mặt tại Hà Nội và nhận phòng tại khu biệt thự — Trung tâm Hội nghị Quốc gia.",
@@ -437,7 +437,7 @@ const DAYS = [
     ]
   },
   {
-    id:"d6", num:"06", dow:"Thứ Bảy", label:"12", title:"Hôn lễ", main:true,
+    id:"d6", date:"2026-12-06", num:"06", label:"12", title:"Hôn lễ", main:true,
     events:[
       { at:"2026-12-06T08:00:00+07:00", time:"8:00", title:"Duyệt chương trình & chạy thử sân khấu",
         desc:"Rà soát toàn bộ kịch bản cùng MC và ê-kíp, chạy thử sân khấu, âm thanh và ánh sáng trước giờ lễ.",
@@ -497,6 +497,9 @@ const DAYS = [
 /* =========================================================
    Xử lý — không cần sửa
    ========================================================= */
+
+const DOW = ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
+const dowOf = iso => DOW[new Date(iso+"T12:00:00Z").getUTCDay()];
 
 const pinIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 const mapsUrl = p => p.url || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(p.address || p.name));
@@ -593,7 +596,7 @@ DAYS.forEach(day=>{
     <div class="day-head">
       <div class="day-num">${day.num}</div>
       <div class="day-meta">
-        <div class="day-dow">${day.dow} · Tháng ${day.label}</div>
+        <div class="day-dow">${dowOf(day.date)} · ${day.num}.${day.label}.${day.date.slice(0,4)}</div>
         <div class="day-title">${day.title}</div>
       </div>
     </div>
