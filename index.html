@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Sang &amp; Thảo — Hành Trình · 06.12.2026</title>
-<meta name="description" content="Lịch trình lễ cưới Sang & Thảo — 03.12 đến 06.12.2026, Trung tâm Hội nghị Quốc gia, Hà Nội." />
+<meta name="description" content="Lịch trình lễ cưới Sang & Thảo — 02.12 đến 06.12.2026, Trung tâm Hội nghị Quốc gia, Hà Nội." />
 <meta name="theme-color" content="#faf7f2" />
 <meta property="og:title" content="Sang & Thảo — Hành Trình" />
 <meta property="og:description" content="06.12.2026 · Trung tâm Hội nghị Quốc gia, Hà Nội" />
@@ -261,6 +261,40 @@
   .crown{display:block;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
     font-weight:600;margin-bottom:9px}
 
+  /* ============ MẶT BẰNG ============ */
+  .mb-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .mb-plan{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:10px;overflow:hidden}
+  .mb-plan svg{display:block;width:100%;height:auto}
+  .mb-plan text{font-family:"Be Vietnam Pro",sans-serif;fill:var(--ink-soft)}
+  .mb-plan .lbl{font-size:12px;font-weight:600;fill:var(--ink)}
+  .mb-plan .sm{font-size:10px}
+  .mb-plan .nm{font-size:11.5px;fill:var(--ink)}
+  .mb-plan .lawn{fill:#eef0e4;stroke:#d8dcc8}
+  .mb-plan .road{fill:#ebe5dc}
+  .mb-plan .water{fill:#e0eaed;stroke:var(--line)}
+  .mb-plan .roof{fill:#fff;stroke:var(--gold);stroke-width:1.5}
+  .mb-plan .aisle{fill:#fff;stroke:var(--line)}
+  .mb-plan .stage{fill:#fff;stroke:var(--gold);stroke-width:2}
+  .mb-plan .drape{fill:var(--bg-soft);stroke:var(--gold)}
+  .mb-plan .flower{fill:#f3e3df;stroke:#b5675c}
+  .mb-plan .table{fill:#fff;stroke:var(--ink-faint)}
+  .mb-plan .tree{fill:#d8dcc8}
+  .mb-plan .path{fill:none;stroke:#fff;stroke-width:8;stroke-linecap:round}
+  .mb-plan .srow{stroke:#7f9a8a;stroke-width:3;stroke-linecap:round}
+  .mb-plan .arrow{stroke:var(--gold);stroke-width:2;fill:none}
+  .mb-plan .arrowhead{fill:var(--gold)}
+  .mb-plan .g-bo,.mb-plan .g-trai{fill:var(--gold)}
+  .mb-plan .g-sang,.mb-plan .g-gai{fill:#b5675c}
+  .mb-plan .g-khach{fill:#7f9a8a}
+  .mb-plan .g-trong{fill:var(--line)}
+  .mb-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin:14px 0 0;
+    font-size:12.5px;color:var(--ink-soft)}
+  .mb-leg span{display:inline-flex;align-items:center;gap:6px}
+  .mb-leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .mb-leg b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+  .mb-note{margin:12px 0 0;font-size:12.5px;color:var(--ink-faint);text-align:center;line-height:1.6}
+
   /* ============ FOOTER ============ */
   .footer{text-align:center;margin-top:64px;padding:38px 20px 70px;border-top:1px solid var(--line)}
   .footer-quote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;
@@ -356,6 +390,20 @@
 
 <main class="wrap" id="timeline"></main>
 
+<!-- ===== MẶT BẰNG ===== -->
+<section class="wrap sec reveal" id="plan">
+  <p class="sec-sub">Sơ đồ</p>
+  <h2 class="sec-title">Mặt bằng</h2>
+  <svg class="sec-orn" width="120" height="12" viewBox="0 0 120 12" aria-hidden="true">
+    <line x1="0" y1="6" x2="46" y2="6"/><line x1="74" y1="6" x2="120" y2="6"/>
+    <path d="M60 2 L64 6 L60 10 L56 6 Z"/>
+  </svg>
+  <div class="mb-tabs" id="mbTabs"></div>
+  <div class="mb-plan" id="mbPlan"></div>
+  <div id="mbLeg"></div>
+  <p class="mb-note" id="mbNote"></p>
+</section>
+
 <footer class="footer">
   <p class="footer-quote">Chúng mình đã đi một quãng đường để tìm thấy nhau.<br>Chặng tiếp theo, đi cùng nhau.</p>
   <p class="footer-sig">Sang &amp; Thảo · 06.12.2026</p>
@@ -380,7 +428,7 @@ const PLACES = {
 };
 
 // 2) MỐC ĐẾM NGƯỢC
-const CEREMONY = "2026-12-06T15:30:00+07:00"; // Lễ Vow
+const CEREMONY = "2026-12-06T16:30:00+07:00"; // Lễ Vow
 
 // 3) CÔ DÂU & CHÚ RỂ
 const COUPLE = [
@@ -407,61 +455,133 @@ const COUPLE = [
 // 4) LỊCH TRÌNH (giờ Việt Nam +07:00)
 const DAYS = [
   {
+    id:"d2", date:"2026-12-02", num:"02", label:"12", title:"Chuẩn bị lên đường",
+    events:[
+      { at:"2026-12-02T19:00:00+07:00", time:"19:00", title:"Check-in vé bay ra Hà Nội",
+        desc:"Hoàn tất hành lý và check-in chuyến bay ra Hà Nội, nghỉ ngơi sớm để sẵn sàng cho hành trình ngày hôm sau.",
+        people:["Chú rể","Mẹ chú rể"] }
+    ]
+  },
+  {
     id:"d3", date:"2026-12-03", num:"03", label:"12", title:"Bay ra Hà Nội",
     events:[
       { at:"2026-12-03T08:10:00+07:00", time:"8:10", title:"Ra Hà Nội",
         desc:"Gia đình hạ cánh tại sân bay Nội Bài lúc 8:10.",
-        people:["Chú rể","Mẹ chú rể","Cô dâu"], place:"airport" }
+        people:["Chú rể","Mẹ chú rể","Cô dâu"], place:"airport" },
+      { at:"2026-12-03T09:00:00+07:00", time:"9:00", title:"Nhận phòng tại khu biệt thự NCC",
+        desc:"Chú rể nhận phòng nghỉ tại khu biệt thự — Trung tâm Hội nghị Quốc gia. Cô dâu và chú rể có mặt đầy đủ tại Hà Nội, nghỉ ngơi và xác nhận lần cuối với các bên dịch vụ.",
+        people:["Cô dâu","Chú rể"], place:"ncc" },
+      { at:"2026-12-03T14:00:00+07:00", time:"14:00", title:"Chú rể nhận tráp dạm ngõ",
+        desc:"Chuẩn bị tráp lễ cho buổi dạm ngõ sáng hôm sau.",
+        people:["Chú rể","Mẹ chú rể"], place:"ncc" },
+      { at:"2026-12-03T18:00:00+07:00", approx:"Buổi tối", title:"Cô dâu về nhà bố Sơn",
+        desc:"Cô dâu qua nhà bố Sơn để sáng hôm sau cùng đón nhà trai.",
+        people:["Cô dâu"], place:"homeSon" }
     ]
   },
   {
     id:"d4", date:"2026-12-04", num:"04", label:"12", title:"Lễ dạm ngõ",
     events:[
-      { at:"2026-12-04T09:00:00+07:00", approx:"Trong ngày", title:"Lễ Dạm Ngõ · Lễ Xin Cưới",
-        desc:"Chú rể cùng mẹ và đại diện gia đình mang tráp sang nhà gái để thưa chuyện và chính thức đặt vấn đề xin cưới. Hai gia đình gặp mặt, chào hỏi và bàn bạc về hôn lễ.",
-        people:["Chú rể","Mẹ chú rể","Cô dâu","Gia đình bố Sơn"], place:"homeSon" }
+      { at:"2026-12-04T09:00:00+07:00", time:"9:00", title:"Nhà trai xuất phát sang nhà gái",
+        desc:"Chú rể cùng mẹ mang theo tráp dạm ngõ sang nhà bố Sơn. Nhà gái chuẩn bị bàn thờ, trà nước; cô dâu đón chú rể.",
+        people:["Chú rể","Mẹ chú rể"], place:"homeSon" },
+      { at:"2026-12-04T09:30:00+07:00", time:"9:30", till:"– 10:00", title:"Lễ Dạm Ngõ · Lễ Xin Cưới",
+        desc:"Buổi dạm ngõ thân mật tại nhà bố Sơn: nhà gái đón chú rể và mẹ chú rể, hai gia đình thưa chuyện, trao đổi về hôn lễ.",
+        people:["Chú rể","Mẹ chú rể","Cô dâu","Gia đình bố Sơn"], place:"homeSon",
+        steps:[
+          {x:"Bố cô dâu đón nhà trai vào nhà."},
+          {x:"Mẹ chú rể trao tráp; bố Sơn cùng cô dâu, chú rể lên tầng <strong>thắp hương báo cáo gia tiên</strong>."},
+          {x:"Mẹ chú rể thưa chuyện, bố cô dâu đáp lời; hai bên trò chuyện, uống trà."},
+          {x:"Mời cơm."}
+        ]},
+      { at:"2026-12-04T10:00:00+07:00", time:"10:00", till:"– 11:30", title:"Cơm gia đình",
+        desc:"Nhà gái mời mẹ chú rể và chú rể dùng cơm thân mật cùng gia đình. Kết thúc, nhà trai về nghỉ ngơi.",
+        people:["Hai gia đình"], place:"homeSon" }
     ]
   },
   {
     id:"d5", date:"2026-12-05", num:"05", label:"12", title:"Đón khách & chuẩn bị",
     events:[
-      { at:"2026-12-05T10:00:00+07:00", approx:"Trong ngày", title:"Gia đình và bạn bè nhà trai ra Hà Nội",
-        desc:"7 thành viên gia đình cùng 4 người bạn có mặt tại Hà Nội và nhận phòng tại khu biệt thự — Trung tâm Hội nghị Quốc gia.",
-        people:["Gia đình nhà trai (7)","Bạn bè (4)"], place:"ncc" },
-      { at:"2026-12-05T14:00:00+07:00", approx:"Buổi chiều", title:"Set up sân khấu và thiết bị",
-        desc:"Ê-kíp dựng sân khấu, lắp đặt âm thanh, ánh sáng và hoàn thiện trang trí cho ngày hôm sau.",
-        people:["Ê-kíp tổ chức"], place:"ncc" },
-      { at:"2026-12-05T18:00:00+07:00", approx:"Buổi tối", title:"Tiệc thân mật tại nhà mẹ Hòa",
-        desc:"Bữa tiệc thân mật cùng gia đình nhà gái.",
-        people:["Cô dâu","Chú rể","Gia đình nhà trai"], place:"homeHoa" }
+      { at:"2026-12-05T09:00:00+07:00", time:"9:00", till:"– cả ngày", title:"Chuẩn bị & trang trí",
+        desc:"Ê-kíp hoàn thiện backdrop, nhà bát giác và bàn ghế lễ ăn hỏi, sân khấu, 120 ghế quan khách, trụ hoa và ruy băng dẫn lối; nghiệm thu trang trí trong ngày.",
+        people:["Ê-kíp tổ chức","Gia đình & bạn bè hỗ trợ"], place:"ncc" },
+      { at:"2026-12-05T11:15:00+07:00", time:"11:15", title:"Gia đình và bạn bè nhà trai ra Hà Nội",
+        desc:"7 thành viên gia đình cùng 4 người bạn lần lượt có mặt tại Hà Nội và nhận phòng tại khu biệt thự — Trung tâm Hội nghị Quốc gia.",
+        people:["Gia đình nhà trai (7)","Bạn bè (4)"], place:"ncc",
+        steps:[
+          {t:"11:15", x:"Sơn và H.Anh hạ cánh, về nhận biệt thự NCC."},
+          {t:"11:25", x:"Cậu Tư và Cún hạ cánh, đi xe đón về NCC."},
+          {t:"12:50", x:"Anh Đạt và chị Lan đến Hà Nội, tự di chuyển về NCC."},
+          {t:"14:45", x:"Anh Bi cùng gia đình đến Hà Nội, xe đón về NCC."}
+        ]},
+      { at:"2026-12-05T14:30:00+07:00", time:"14:30", till:"– 17:00", title:"Gặp mặt tại nhà mẹ Hòa",
+        desc:"Chú rể cùng mẹ, cậu Tư và Cún sang nhà mẹ Hòa. Nhà gái tiếp đón, uống trà giới thiệu và dùng cơm gia đình thân mật; nhà trai gửi quà đến nhà gái.",
+        people:["Cô dâu","Chú rể","Gia đình nhà trai"], place:"homeHoa" },
+      { at:"2026-12-05T19:00:00+07:00", time:"19:00", title:"Nhận tráp ăn hỏi và tráp xin dâu",
+        desc:"Chú rể nhận tráp lễ ăn hỏi và xin dâu, chuẩn bị cho ngày hôm sau.",
+        people:["Chú rể","Gia đình"], place:"ncc" },
+      { at:"2026-12-05T19:00:00+07:00", time:"19:00", title:"Chạy thử sân khấu",
+        desc:"Thử sân khấu, kiểm tra thời gian và chốt lại chương trình cùng MC và ê-kíp trước ngày cưới.",
+        people:["Cô dâu & Chú rể","MC","Ê-kíp tổ chức"], place:"ncc" }
     ]
   },
   {
     id:"d6", date:"2026-12-06", num:"06", label:"12", title:"Hôn lễ", main:true,
     events:[
-      { at:"2026-12-06T08:00:00+07:00", time:"8:00", title:"Duyệt chương trình & chạy thử sân khấu",
-        desc:"Rà soát toàn bộ kịch bản cùng MC và ê-kíp, chạy thử sân khấu, âm thanh và ánh sáng trước giờ lễ.",
-        people:["Cô dâu & Chú rể","MC","Ê-kíp tổ chức"], place:"ncc" },
+      { at:"2026-12-06T05:00:00+07:00", time:"5:00", title:"Chuẩn bị buổi sáng",
+        desc:"Cô dâu từ nhà mẹ sang nhà bố Sơn; cô dâu, chú rể và mẹ hai bên trang điểm nhẹ, mặc áo dài. Ê-kíp quay phim có mặt.",
+        people:["Cô dâu","Chú rể","Gia đình hai bên"], place:"homeSon" },
 
-      { at:"2026-12-06T13:00:00+07:00", time:"13:00", title:"Lễ Xin Dâu",
-        desc:"Chú rể cùng mẹ và đại diện gia đình đến nhà bố cô dâu thực hiện nghi thức xin dâu và dâng hương bái tạ gia tiên. Sau khi hoàn tất nghi lễ, cô dâu và chú rể di chuyển về khu biệt thự để chuẩn bị cho các nghi thức tiếp theo.",
-        people:["Chú rể","Mẹ chú rể","Đại diện hai họ"], place:"homeSon" },
+      { at:"2026-12-06T07:30:00+07:00", time:"7:30", title:"Nhà trai xuất phát",
+        desc:"Chú rể, mẹ chú rể, dì Hai và Sơn xuất phát sang nhà bố Sơn, mang theo tráp xin dâu. Gia đình nhà gái có mặt đầy đủ để đón tiếp.",
+        people:["Chú rể","Mẹ chú rể","Dì Hai"], place:"homeSon" },
 
-      { at:"2026-12-06T14:00:00+07:00", time:"14:00", till:"– 15:00", title:"Lễ Ăn Hỏi (Lễ Đính Hôn)",
-        desc:"Tổ chức tại không gian sân vườn. Thành phần tham dự: gia đình cô dâu cùng gia đình chú rể.",
-        people:["Gia đình cô dâu","Gia đình chú rể"], place:"ncc",
+      { at:"2026-12-06T08:00:00+07:00", time:"8:00", till:"– 9:00", title:"Lễ Xin Dâu",
+        desc:"Tổ chức tại nhà bố Sơn. Bác Lương dẫn lễ bên nhà gái, dì Hai dẫn lễ bên nhà trai. Hoàn tất nghi lễ, cô dâu cùng chú rể về khu biệt thự NCC.",
+        people:["Chú rể","Mẹ chú rể","Đại diện hai họ"], place:"homeSon",
         steps:[
-          {x:"MC điều phối các nghi thức truyền thống: <strong>trao tráp, trao dâu, khai trà và mời rượu</strong>."},
-          {x:"MC giới thiệu thành phần quan khách; đại diện hai họ phát biểu chúc phúc."},
-          {x:"<strong>Nghi thức trao lễ vật</strong> — gia đình hai bên trao quà cưới cho tân lang, tân nương."},
-          {x:"Bế mạc lễ ăn hỏi. Quan khách nghỉ ngơi và dùng trà; cô dâu, chú rể thay trang phục cho nghi lễ tiếp theo."}
+          {x:"Nhà trai xếp hàng: dì Hai, mẹ chú rể, chú rể và hai người bạn cầm hoa, mâm lễ."},
+          {x:"Nhà gái đón và nhận mâm lễ."},
+          {x:"Bác Lương dẫn lễ, chào đón nhà trai."},
+          {x:"Dì Hai phát biểu xin đón dâu; bác Lương phát biểu đáp lời."},
+          {x:"Chú rể đón cô dâu, cùng <strong>thắp hương</strong> bái tạ gia tiên."},
+          {x:"Rót trà mời ông bà, bố mẹ."},
+          {x:"Chụp ảnh gia đình."},
+          {x:"Đưa dâu về khu biệt thự NCC."}
         ]},
 
-      { at:"2026-12-06T15:30:00+07:00", time:"15:30", till:"– 17:00", title:"Lễ Vow", highlight:true,
+      { at:"2026-12-06T10:00:00+07:00", time:"10:00", till:"– 14:00", title:"Chuẩn bị Lễ Ăn Hỏi",
+        desc:"Mọi người dùng bữa nhẹ khoảng 30 phút tại nhà hàng. Cô dâu, chú rể cùng hai mẹ trang điểm, sau đó thay áo dài làm lễ ăn hỏi. Hai họ có mặt tại khu làm lễ lúc 13:30.",
+        people:["Cô dâu & Chú rể","Hai gia đình"], place:"ncc" },
+
+      { at:"2026-12-06T14:30:00+07:00", time:"14:30", till:"– 15:30", title:"Lễ Ăn Hỏi (Lễ Đính Hôn)",
+        desc:"Tổ chức tại nhà bát giác. Nhà trai ra khu lễ, nhà gái đợi lễ tại nhà bát giác. Thành phần tham dự: gia đình cô dâu cùng gia đình chú rể.",
+        people:["Gia đình cô dâu","Gia đình chú rể"], place:"ncc",
+        steps:[
+          {x:"Xếp 5 tráp lễ."},
+          {x:"Nhà trai ra khu lễ, nhà gái đợi lễ tại nhà bát giác."},
+          {x:"<strong>Trao tráp</strong> từng cặp nam – nữ."},
+          {x:"MC giới thiệu hai họ."},
+          {x:"Dì Hai xin dâng lễ, bác Lương nhận lễ."},
+          {x:"Cô dâu, chú rể ra mắt, rót trà."},
+          {x:"Họ hàng <strong>trao quà cưới</strong>, chúc phúc cho cô dâu, chú rể."},
+          {x:"Chụp ảnh kỷ niệm."},
+          {x:"Lại quả, kết thúc lễ."}
+        ]},
+
+      { at:"2026-12-06T15:30:00+07:00", time:"15:30", till:"– 16:15", title:"Chuẩn bị Lễ Cưới",
+        desc:"Mọi người nghỉ ngơi, uống trà, ăn bánh đợi đến lễ cưới chính (nhà hàng phục vụ). Cô dâu và chú rể thay trang phục cưới.",
+        people:["Cô dâu & Chú rể","Hai gia đình"], place:"ncc" },
+
+      { at:"2026-12-06T16:00:00+07:00", time:"16:00", till:"– 16:30", title:"Đón khách",
+        desc:"Đón tiếp quan khách và ổn định chỗ ngồi trước giờ làm lễ.",
+        people:["Hai gia đình","Quan khách"], place:"ncc" },
+
+      { at:"2026-12-06T16:30:00+07:00", time:"16:30", till:"– 17:30", title:"Lễ Vow", highlight:true,
         desc:"Trong thời gian đón tiếp và ổn định chỗ ngồi, không gian buổi lễ được dẫn dắt bởi phần trình diễn của band nhạc.",
         people:["Cô dâu & Chú rể","~100 khách mời"], place:"ncc",
         steps:[
-          {t:"15:30", x:"Khai mạc với tiết mục <strong>“Perfect”</strong> do chú rể trình bày, kết hợp phần đệm của band nhạc.",
+          {t:"16:30", x:"Khai mạc với tiết mục <strong>“Perfect”</strong> do chú rể trình bày, kết hợp phần đệm của band nhạc.",
            ref:{label:"tham khảo", url:"https://www.youtube.com/watch?v=-E5ovOA9VM8"}},
           {x:"Hòa tấu Piano <strong>“Beautiful in White”</strong> do em trai cô dâu (<strong>Cao Lâm</strong>) thực hiện, làm nhạc dạo đầu."},
           {x:"Hai em trai <strong>Cao Lĩnh</strong> và <strong>Khánh An</strong> tung hoa mở đường."},
@@ -476,19 +596,20 @@ const DAYS = [
            ref:{label:"tìm hiểu", url:"https://congdankhuyenhoc.vn/non-nang-dau-nghi-thuc-cuoi-cho-tinh-yeu-de-vuong-179251022104641382.htm"}},
           {x:"Chú rể đại diện gửi lời tri ân công ơn sinh thành, dưỡng dục của hai người mẹ."},
           {x:"MC kính mời bố cô dâu phát biểu."},
-          {x:"Đại diện bạn thân phát biểu chúc mừng: <strong>Mai Thanh Tùng</strong> (bạn cô dâu); <strong>Phạm Duy Sơn</strong> và <strong>Võ Thành Đạt</strong> (bạn chú rể)."},
+          {x:"Đại diện bạn thân và gia đình phát biểu chúc mừng: <strong>Mai Thanh Tùng</strong> (bạn cô dâu); <strong>Anh Linh</strong>; <strong>Phạm Duy Sơn</strong> và <strong>Võ Thành Đạt</strong> (bạn chú rể); hai bà ngoại chúc phúc."},
           {x:"<strong>Nghi thức tung hoa cưới</strong> truyền thống."},
           {x:"MC kính mời quan khách vào sảnh đại yến dự tiệc cưới."}
         ]},
 
       { at:"2026-12-06T17:30:00+07:00", time:"17:30", till:"– 21:00", title:"Tiệc Cưới",
-        desc:"Tổ chức tại sảnh đại yến. Chương trình khép lại lúc 21:00.",
+        desc:"Tổ chức tại sảnh đại yến. Quan khách an tọa lúc 17:30, khai tiệc lúc 17:45. Chương trình khép lại lúc 21:00.",
         people:["Hai gia đình","Toàn thể quan khách"], place:"ncc",
         steps:[
-          {x:"MC mời quan khách an tọa, bắt đầu <strong>nghi thức khai tiệc</strong> và nâng ly chúc mừng tân lang, tân nương."},
+          {t:"17:45", x:"MC mời quan khách an tọa, bắt đầu <strong>nghi thức khai tiệc</strong> và nâng ly chúc mừng tân lang, tân nương."},
           {x:"Cô dâu, chú rể cùng gia đình <strong>đi bàn</strong>, gửi lời tri ân đến từng vị khách quý."},
           {x:"MC điều phối các hoạt động giao lưu và trò chơi tương tác, trong đó có phần dành riêng cho khách mời độc thân."},
-          {x:"Chương trình khép lại với phần trình diễn âm nhạc sôi động."}
+          {x:"Chương trình khép lại với phần trình diễn âm nhạc sôi động."},
+          {t:"21:00", x:"Kết thúc, cô dâu chú rể cùng gia đình tiễn khách."}
         ]}
     ]
   }
@@ -720,6 +841,106 @@ if("IntersectionObserver" in window){
 }else{
   document.querySelectorAll(".reveal,.ev").forEach(n=>n.classList.add("in"));
 }
+
+/* --- mặt bằng --- */
+const MB = {
+  // Ghế lễ cưới: 2 bên × 6 hàng × 10 ghế. Bên trái: 20 ghế nhà bố Sơn + 40 khách; bên phải: 20 ghế nhà Sang & mẹ Hòa + 40 khách
+  wed: { rows:6, per:10,
+    seats:[...Array(20).fill("bo"), ...Array(40).fill("khach"), ...Array(20).fill("sang"), ...Array(40).fill("khach")],
+    legend:[["bo","Nhà bố Sơn"],["sang","Nhà Sang & nhà mẹ Hòa"],["khach","Bạn bè, quan khách"]] },
+  // Ghế ăn hỏi: 15 ghế mỗi bên
+  ah: { per:15,
+    seats:[
+      ...["Bác Lương","Bố","Cô Hà","Bà ngoại","Mẹ Hòa","Bác Bình"].map(n=>({g:"gai",n})),
+      ...Array(9).fill(0).map(()=>({g:"gai",n:""})),
+      ...Array(15).fill(0).map(()=>({g:"trai",n:""}))],
+    legend:[["gai","Nhà gái"],["trai","Nhà trai"]] },
+  tabs:[["site","Tổng thể"],["wed","Lễ cưới"],["ah","Ăn hỏi"]],
+  cur:"site"
+};
+const MB_COL = {bo:"var(--gold)",trai:"var(--gold)",sang:"#b5675c",gai:"#b5675c",khach:"#7f9a8a"};
+const AX = y => 230 + 26*Math.sin((y-140)/300*2*Math.PI);
+
+function mbWed(){
+  const W = MB.wed; let a=[], b=[];
+  for(let y=140;y<=440;y+=10){ a.push(`${(AX(y)-15).toFixed(1)},${y}`); b.unshift(`${(AX(y)+15).toFixed(1)},${y}`); }
+  const seats = W.seats.map((g,i)=>{
+    const side=Math.floor(i/(W.rows*W.per)), r=Math.floor(i/W.per)%W.rows, c=i%W.per, y=170+r*48;
+    const x = side ? AX(y)+25+c*16 : AX(y)-25-c*16-13;
+    return `<rect class="g-${g}" x="${x.toFixed(1)}" y="${y}" width="13" height="13" rx="3"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 460 500" role="img" aria-label="Sơ đồ ghế lễ cưới">
+  <rect class="lawn" x="1" y="1" width="458" height="498" rx="12"/>
+  <rect class="drape" x="205" y="20" width="50" height="46" rx="4"/><text class="sm" x="262" y="40">Backdrop cao 5,5m</text>
+  <circle class="stage" cx="230" cy="102" r="36"/><text class="lbl" x="230" y="106" text-anchor="middle">Sân khấu</text>
+  <circle class="flower" cx="174" cy="102" r="8"/><circle class="flower" cx="286" cy="102" r="8"/>
+  <polygon class="aisle" points="${a.concat(b).join(" ")}"/>
+  <circle class="flower" cx="196" cy="454" r="8"/><circle class="flower" cx="264" cy="454" r="8"/>
+  <text class="sm" x="230" y="482" text-anchor="middle">Lối đi cô dâu dài 8m · 4 trụ hoa</text>
+  <text class="sm" x="16" y="160">Bên trái</text><text class="sm" x="444" y="160" text-anchor="end">Bên phải</text>
+  ${seats}</svg>`;
+}
+function mbAh(){
+  const A = MB.ah, cx=240, cy=230, R=215;
+  const oct=[...Array(8)].map((_,j)=>{const t=(22.5+45*j)*Math.PI/180;return `${(cx+R*Math.cos(t)).toFixed(1)},${(cy+R*Math.sin(t)).toFixed(1)}`}).join(" ");
+  const tables=[...Array(5)].map((_,j)=>`<rect class="table" x="220" y="${85+j*54+1}" width="40" height="52" rx="3"/>`).join("");
+  const pitch=270/A.per;
+  const seats=A.seats.map((s,i)=>{
+    const side=Math.floor(i/A.per), k=i%A.per, x=side?266:200, y=85+k*pitch+(pitch-14)/2;
+    const nm=s.n?`<text class="nm" x="${side?x+20:x-6}" y="${(y+11).toFixed(1)}" text-anchor="${side?"start":"end"}">${s.n}</text>`:"";
+    return `<rect class="g-${s.g}" x="${x}" y="${y.toFixed(1)}" width="14" height="14" rx="3"/>${nm}`;
+  }).join("");
+  return `<svg viewBox="0 0 480 460" role="img" aria-label="Sơ đồ ghế nhà bát giác lễ ăn hỏi">
+  <polygon class="roof" points="${oct}"/>
+  <text class="lbl" x="240" y="47" text-anchor="middle">Backdrop Sang Thảo</text><rect class="drape" x="170" y="54" width="140" height="12" rx="3"/>
+  ${tables}<text class="sm" x="240" y="372" text-anchor="middle">5 bàn dài</text>
+  <text class="lbl" x="110" y="76" text-anchor="middle">Nhà gái</text><text class="lbl" x="370" y="76" text-anchor="middle">Nhà trai</text>
+  ${seats}
+  <text class="sm" x="240" y="420" text-anchor="middle">Lối vào ↓ (đi từ lối vào 2)</text></svg>`;
+}
+function mbSite(){
+  const ar=(x1,y1,x2,y2)=>{const t=Math.atan2(y2-y1,x2-x1),h=8;return `<line class="arrow" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><polygon class="arrowhead" points="${x2},${y2} ${(x2-h*Math.cos(t-0.45)).toFixed(1)},${(y2-h*Math.sin(t-0.45)).toFixed(1)} ${(x2-h*Math.cos(t+0.45)).toFixed(1)},${(y2-h*Math.sin(t+0.45)).toFixed(1)}"/>`};
+  const trees=[[110,90],[135,330],[160,380],[470,60],[520,110],[560,300],[480,370],[90,250],[400,40]].map(([x,y])=>`<circle class="tree" cx="${x}" cy="${y}" r="16"/>`).join("");
+  const oct=[...Array(8)].map((_,j)=>{const t=(22.5+45*j)*Math.PI/180;return `${(440+52*Math.cos(t)).toFixed(1)},${(180+52*Math.sin(t)).toFixed(1)}`}).join(" ");
+  const rowsL=[0,1,2,3,4].map(j=>`<line x1="200" y1="${120+j*16}" x2="268" y2="${126+j*16}" class="srow"/>`).join("");
+  const rowsR=[0,1,2,3,4].map(j=>`<line x1="296" y1="${128+j*16}" x2="362" y2="${136+j*16}" class="srow"/>`).join("");
+  return `<svg viewBox="0 0 600 430" role="img" aria-label="Mặt bằng tổng thể sân vườn">
+  <rect class="road" x="0" y="0" width="64" height="430"/><text class="sm" x="32" y="215" text-anchor="middle" transform="rotate(-90 32 215)">Phố Miêu Đầm</text>
+  <rect class="lawn" x="64" y="0" width="536" height="430"/>
+  ${trees}
+  <circle class="stage" cx="282" cy="62" r="20"/><text class="sm" x="282" y="30" text-anchor="middle">Sân khấu</text>
+  <path d="M282 82 C 262 110, 304 140, 282 170 S 268 210, 282 222" class="path"/>
+  ${rowsL}${rowsR}<text class="lbl" x="282" y="246" text-anchor="middle">Ghế quan khách (120 ghế)</text>
+  <polygon class="roof" points="${oct}"/><text class="lbl" x="440" y="176" text-anchor="middle">Nhà bát giác</text><text class="sm" x="440" y="192" text-anchor="middle">Lễ ăn hỏi</text>
+  <rect class="drape" x="98" y="196" width="14" height="44" rx="2"/><text class="sm" x="120" y="226">Backdrop</text>
+  ${ar(40,150,96,170)}<text class="lbl" x="100" y="152">Lối vào 1</text>
+  <rect class="water" x="190" y="300" width="150" height="120" rx="4"/><text class="sm" x="265" y="364" text-anchor="middle">Bể bơi</text>
+  <path d="M380 420 C 382 360, 400 300, 418 236" class="path" style="stroke:#e4dcd1"/>
+  ${ar(372,420,386,330)}<text class="lbl" x="392" y="410">Lối vào 2</text>
+  </svg>`;
+}
+function mbRender(){
+  const v = MB.cur;
+  document.getElementById("mbTabs").innerHTML = MB.tabs.map(([id,n])=>
+    `<button class="daybtn${id===v?" active":""}" type="button" data-mb="${id}">${n}</button>`).join("");
+  document.getElementById("mbPlan").innerHTML = v==="site" ? mbSite() : v==="wed" ? mbWed() : mbAh();
+  const leg = document.getElementById("mbLeg"), note = document.getElementById("mbNote");
+  if(v==="site"){
+    leg.innerHTML = "";
+    note.textContent = "Khách vào từ lối vào 1 (chụp ảnh tại backdrop) hoặc lối vào 2 (đi thẳng tới nhà bát giác). Sơ đồ mang tính minh họa, không đúng tỉ lệ.";
+    return;
+  }
+  const M = MB[v], count = g => M.seats.filter(s => (s.g||s)===g).length;
+  leg.innerHTML = `<div class="mb-leg">${M.legend.map(([g,n])=>`<span><i style="background:${MB_COL[g]}"></i>${n} <b>${count(g)}</b></span>`).join("")}</div>`;
+  note.textContent = v==="wed"
+    ? `Nhà bố Sơn ngồi bên trái, nhà Sang và nhà mẹ Hòa bên phải, mỗi bên 2 hàng đầu. Bạn bè, quan khách ngồi từ hàng 3. Tổng ${M.seats.length} ghế.`
+    : "Nhà gái ngồi bên trái, nhà trai bên phải. Ghế đầu tiên là ghế sát backdrop.";
+}
+document.getElementById("mbTabs").addEventListener("click", e=>{
+  const b = e.target.closest("[data-mb]"); if(!b) return;
+  MB.cur = b.dataset.mb; mbRender();
+});
+mbRender();
 
 /* --- init --- */
 tickCountdown();
